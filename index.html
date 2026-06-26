@@ -299,43 +299,54 @@
     <div class="prize-container" id="prize"></div>
 
     <script>
-        // --- 1. آرشیو کادوها (متن‌های شما با فرمت تمیز) ---
+        // --- 1. آرشیو کادوها (بروزرسانی شده با فایل‌های گیت‌هاب شما) ---
         const library = [
             { 
                 type: 'text', 
-                content: `یک خاطره:\nروزی که اول سال کلاس هامونو از هم جدا کردن رو یادته؟\nقطعا یادته\nموقعه ای اسم منو تو رو خواندن .\nیادته تا مدیر از کلاس رفت بیرون آمدی تو بغلم شروع کردی به <span class="highlight-cry">گریه کردن؟</span>\nهیچ وقت فراموش نمیکنم و نکن این روز رو.\nیادته رفتیم تو حیاط چقدر به اینکه من تو کدوم کلاس افتادم <span class="highlight-happy">خندیدیم؟</span>` //
+                content: `یک خاطره:\nروزی که اول سال کلاس هامونو از هم جدا کردن رو یادته؟\nقطعا یادته\nموقعه ای اسم منو تو رو خواندن .\nیادته تا مدیر از کلاس رفت بیرون آمدی تو بغلم شروع کردی به <span class="highlight-cry">گریه کردن؟</span>\nهیچ وقت فراموش نمیکنم و نکن این روز رو.\nیادته رفتیم تو حیاط چقدر به اینکه من تو کدوم کلاس افتادم <span class="highlight-happy">خندیدیم؟</span>` 
             },
             { 
                 type: 'text', 
-                content: `یک خاطره:\nمیدونم آدم های زیادی به عنوان دوست آمدن تو زندگیت اما بهت ضربه زدن و رفتن .آخریش هم که همین ماه پیش بود ‌. \nمیخواستم بگم که هرکسی که بیاد و بره <span class="highlight-love">من میمونم و ولت نمیکنم.</span>\n تو روز های سخت پیشتم .` //
+                content: `یک خاطره:\nمیدونم آدم های زیادی به عنوان دوست آمدن تو زندگیت اما بهت ضربه زدن و رفتن .آخریش هم که همین ماه پیش بود ‌. \nمیخواستم بگم که هرکسی که بیاد و بره <span class="highlight-love">من میمونم و ولت نمیکنم.</span>\n تو روز های سخت پیشتم .` 
             },
             { 
                 type: 'text', 
-                content: `یک خاطره:\nیادته وقتی باهم همکلاسی شدیم چقدر از هم بدمون می‌آمد؟\nازت متنفر بودم و همش میگفتم چه دختر فیسو اِفاده ای هست .\nولی الان شدی <span class="highlight-love">یک تکه از وجودم</span> که نمیتونم از خودم جدات کنم .\nشدی رفیق روز های سخت و روز های خوشحالیم.` //
+                content: `یک خاطره:\nیادته وقتی باهم همکلاسی شدیم چقدر از هم بدمون می‌آمد؟\nازت متنفر بودم و همش میگفتم چه دختر فیسو اِفاده ای هست .\nولی الان شدی <span class="highlight-love">یک تکه از وجودم</span> که نمیتونم از خودم جدات کنم .\nشدی رفیق روز های سخت و روز های خوشحالیم.` 
             },
             { 
                 type: 'text', 
-                content: `یک خاطره:\nاون روزی که آمدم خونتون بعد نشستیم فیلم ترسناک ببینیم بعد تو گفتی فیلم معصوم رو ببینیم خیلی ترسناک هست.بعد که نگاه کردیم دیدیم ترسناک نیست از اولش تا آخرش هم که کلی <span class="highlight-happy">خندیدیم .</span>\nخلاصه که خاطره خیلی خوبی بود .\nلطفا دیگه فیلم ترسناک به کسی معرفی نکن.😂` //
+                content: `یک خاطره:\nاون روزی که آمدم خونتون بعد نشستیم فیلم ترسناک ببینیم بعد تو گفتی فیلم معصوم رو ببینیم خیلی ترسناک هست.بعد که نگاه کردیم دیدیم ترسناک نیست از اولش تا آخرش هم که کلی <span class="highlight-happy">خندیدیم .</span>\nخلاصه که خاطره خیلی خوبی بود .\nلطفا دیگه فیلم ترسناک به کسی معرفی نکن.😂` 
             },
             { type: 'image', file: 'image1.jpg' },
             { type: 'image', file: 'image2.jpg' },
             { type: 'image', file: 'image3.jpg' },
+            { type: 'image', file: 'image4.jpg' },
             { type: 'audio', file: 'music1.mp3' },
             { type: 'audio', file: 'music2.mp3' },
-            { type: 'audio', file: 'music3.mp3' }
+            { type: 'audio', file: 'music3.mp3' },
+            { type: 'audio', file: 'music4.mp3' }
         ];
+
+        // --- 2. سیستم انتخاب کادو با شانس کاملاً برابر ---
+        const texts = library.filter(item => item.type === 'text');
+        const images = library.filter(item => item.type === 'image');
+        const audios = library.filter(item => item.type === 'audio');
+
+        const categories = [texts, images, audios];
+        const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+
+        let selectedPrize = randomCategory[Math.floor(Math.random() * randomCategory.length)];
 
         let totalBoxes = 12;
         let winningBox = Math.floor(Math.random() * totalBoxes) + 1;
         let winningDoll = Math.random() < 0.5 ? 'red' : 'blue';
-        let selectedPrize = library[Math.floor(Math.random() * library.length)];
         let isGameOver = false;
         
         // متغیرهای انیمیشن Canvas
         const canvas = document.getElementById('fxCanvas');
         const ctx = canvas.getContext('2d');
         let fxParticles = [];
-        let fxMode = 'none'; // 'fireworks' یا 'background-ambient'
+        let fxMode = 'none';
 
         function init() {
             const grid = document.getElementById('boxGrid');
@@ -427,7 +438,7 @@
                         const delay = (wordIndex++) * 0.08;
                         return `<span class="memory-word" style="animation-delay: ${delay}s">${word}</span>`;
                     }
-                    return match; // در صورت وجود فاصله یا موارد دیگر
+                    return match; 
                 });
                 
                 animatedHtml += '</div>';
@@ -472,7 +483,6 @@
             startCanvas();
             fxMode = 'ambient';
             fxParticles = [];
-            // تولید اولیه ۶۰ ذره قلبی و دایره‌ای شکل روی کل صفحه
             for (let i = 0; i < 60; i++) {
                 fxParticles.push(createAmbientParticle());
             }
@@ -485,7 +495,7 @@
                 vx: (Math.random() - 0.5) * 1.5,
                 vy: -Math.random() * 1.5 - 0.5,
                 alpha: Math.random() * 0.5 + 0.2,
-                color: `hsla(${330 + Math.random() * 40}, 100%, 70%, 1)`, // طیف صورتی، بنفش و طلایی رمانتیک
+                color: `hsla(${330 + Math.random() * 40}, 100%, 70%, 1)`, 
                 size: Math.random() * 6 + 3,
                 isHeart: Math.random() < 0.4
             };
@@ -517,7 +527,6 @@
                     if (fxParticles.length === 0) canvas.style.display = 'none';
                 } 
                 else if (fxMode === 'ambient') {
-                    // حرکت ذرات آرام پس‌زمینه خاطره به سمت بالا
                     for (let i = 0; i < fxParticles.length; i++) {
                         let p = fxParticles[i];
                         p.x += p.vx;
@@ -528,7 +537,6 @@
                         ctx.fillStyle = p.color;
                         
                         if (p.isHeart) {
-                            // رسم بازوهای مینیاتوری قلب فانتزی
                             ctx.beginPath();
                             ctx.font = `${p.size * 2.5}px Arial`;
                             ctx.fillText('💖', p.x, p.y);
@@ -539,7 +547,6 @@
                         }
                         ctx.restore();
 
-                        // بازنشانی ذره در صورت خروج از سقف صفحه
                         if (p.y < -20) {
                             fxParticles[i] = createAmbientParticle();
                             fxParticles[i].y = canvas.height + 10;
@@ -557,5 +564,3 @@
     </script>
 </body>
 </html>
-
-```
